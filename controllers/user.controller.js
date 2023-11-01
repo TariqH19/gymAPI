@@ -6,8 +6,6 @@ const register = (req, res) => {
   let inputData = new User(req.body);
   if (req.file) {
     inputData.file_path = req.file.originalname;
-  } else {
-    return res.status(422).json({ msg: req.fileError });
   }
   inputData.password = bcrypt.hashSync(req.body.password, 10);
   // let error = newUser.validateSync();

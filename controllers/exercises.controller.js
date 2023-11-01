@@ -45,8 +45,6 @@ const createData = (req, res) => {
   if (req.files) {
     const filePaths = req.files.map((file) => file.originalname);
     inputData.file_path = filePaths;
-  } else {
-    return res.status(422).json({ msg: req.imageError });
   }
 
   Exercise.create(inputData)

@@ -12,6 +12,9 @@ const workoutSplitSchema = new Schema(
       required: [true, "Name of the split is required"],
       ref: "Split",
     },
+    notes: {
+      type: [String],
+    },
     dateStart: {
       type: Date,
     },

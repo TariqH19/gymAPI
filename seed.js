@@ -35,11 +35,13 @@ db.once("open", async () => {
         name: "Lat Pulldown",
         muscle_group: ["Back", "Biceps"],
         image: "",
+        notes: ["Keep your back straight", "Don't forget to stretch"],
         user: USER_ID_1,
       },
       {
         name: "Squats",
         muscle_group: ["Quads", "Glutes", "Hamstrings"],
+        notes: ["Keep your back straight", "Don't forget to stretch"],
         image: "",
         user: USER_ID_2,
       },
@@ -116,6 +118,7 @@ db.once("open", async () => {
       {
         workout: workoutIds[0],
         split: splitIds[0],
+        notes: ["This will be a heavy back day...", "Don't forget to stretch"],
         dateStart: new Date("2011-11-11"),
         dateEnd: new Date("2012-12-12"),
         user: USER_ID_1,
@@ -123,6 +126,7 @@ db.once("open", async () => {
       {
         workout: workoutIds[1],
         split: splitIds[1],
+        notes: ["This will be a heavy chest day...", "Don't forget to stretch"],
         dateStart: new Date("2011-11-11"),
         dateEnd: new Date("2012-12-12"),
         user: USER_ID_2,

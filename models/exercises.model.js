@@ -10,6 +10,9 @@ const exerciseSchema = new Schema(
     muscle_group: {
       type: [String],
     },
+    notes: {
+      type: [String],
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
