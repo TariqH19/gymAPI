@@ -8,7 +8,7 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
+app.get("/auth", (req, res) => {
   res.send('<a href="/auth/google">Authenticate with Google</a>');
 });
 
