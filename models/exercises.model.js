@@ -15,8 +15,8 @@ const exerciseSchema = new Schema(
       ref: "User",
       required: [true, "Name of the user is required"],
     },
-    image: {
-      type: String,
+    file_path: {
+      type: [String],
     },
   },
   { timestamps: true }

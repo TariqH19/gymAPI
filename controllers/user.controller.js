@@ -3,8 +3,13 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const register = (req, res) => {
-  let newUser = new User(req.body);
-  newUser.password = bcrypt.hashSync(req.body.password, 10);
+  let inputData = new User(req.body);
+  if (req.file) {
+    inputData.file_path = req.file.originalname;
+  } else {
+    return res.status(422).json({ msg: req.fileError });
+  }
+  inputData.password = bcrypt.hashSync(req.body.password, 10);
   // let error = newUser.validateSync();
 
   // if (error) {
@@ -14,7 +19,7 @@ const register = (req, res) => {
   //   });
   // }
 
-  newUser
+  inputData
     .save()
     .then((user) => {
       user.password = undefined;
@@ -41,7 +46,12 @@ const login = (req, res) => {
       }
 
       let token = jwt.sign(
-        { email: user.email, name: user.name, _id: user._id },
+        {
+          email: user.email,
+          name: user.name,
+          _id: user._id,
+          file_path: user.file_path,
+        },
         process.env.JWT_SECRET
       );
 

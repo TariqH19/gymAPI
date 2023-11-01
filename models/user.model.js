@@ -20,6 +20,9 @@ const userSchema = new Schema(
       required: [true, "password field is required"],
       min: [6, "password must be at least 6 characters long"],
     },
+    file_path: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

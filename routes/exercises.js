@@ -1,23 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { loginRequired } = require("../controllers/user.controller");
-const { isLoggedInGoogle } = require("../passport/passport.js");
+const imageUpload = require("../configs/images");
+
 const {
   filterExercisesByUser,
 } = require("../controllers/exercises.controller");
 
-const loggedIn = (req, res, next) => {
-  console.log("loginRequired:", loginRequired);
-  console.log("isLoggedInGoogle:", isLoggedInGoogle);
-
-  if (loginRequired || isLoggedInGoogle) {
-    next();
-  } else {
-    return res.status(401).json({
-      msg: "Unauthorized",
-    });
-  }
-};
+const { loggedIn } = require("../commonFunctions/commonFunctions");
 
 const {
   readData,
@@ -30,8 +19,8 @@ const {
 router
   .get("/", filterExercisesByUser, readData)
   .get("/:id", loggedIn, filterExercisesByUser, readOne)
-  .post("/", loggedIn, filterExercisesByUser, createData)
-  .put("/:id", loggedIn, filterExercisesByUser, updateData)
-  .delete("/:id", loggedIn, filterExercisesByUser, deleteData);
+  .post("/", loggedIn, imageUpload.array("files", 5), createData)
+  .put("/:id", loggedIn, imageUpload.array("files", 5), updateData)
+  .delete("/:id", loggedIn, deleteData);
 
 module.exports = router;

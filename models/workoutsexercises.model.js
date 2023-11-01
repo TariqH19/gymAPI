@@ -32,6 +32,9 @@ const workoutExerciseSchema = new Schema(
       ref: "User",
       required: [true, "Name of the User is required"],
     },
+    file_path: {
+      type: [String],
+    },
   },
   { timestamps: true }
 );

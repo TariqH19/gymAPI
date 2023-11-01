@@ -3,9 +3,6 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const app = require("./app.js");
 const port = 3000;
-var passport = require("passport");
-const session = require("express-session");
-const passportStrategy = require("./passport/passport.js");
 const morgan = require("morgan");
 
 require("./configs/db.js")();
@@ -13,37 +10,6 @@ require("./configs/db.js")();
 app.use(express.json());
 
 app.use(morgan("dev"));
-
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get("/", (req, res) => {
-  res.send('<a href="/auth/google">Authenticate with Google</a>');
-});
-
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/auth/success",
-    failureRedirect: "/auth/google/failure",
-  })
-);
-
-app.get("/auth/success", (req, res) => {
-  res.send(`Hello ${req.user.displayName}`);
-});
-
-app.get("/auth/google/failure", (req, res) => {
-  res.send("Failed to authenticate..");
-});
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///// GOGGLE AUTHENTICATION /////////////////////////////////////////////////////////////////////
 
 app.use((req, res, next) => {
   console.log(req.headers);
@@ -74,6 +40,8 @@ app.use((req, res, next) => {
   console.log(req.user);
   next();
 });
+
+app.use(express.static(__dirname + "/public/"));
 
 app.use("/api/users", require("./routes/users"));
 app.use("/api/workoutssplits", require("./routes/workoutssplits"));
