@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 var passport = require("passport");
-const session = require("express-session");
+const session = require("cookie-session");
 const passportStrategy = require("./passport/passport.js");
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
