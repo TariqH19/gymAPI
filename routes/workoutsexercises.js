@@ -16,8 +16,8 @@ const {
 } = require("../controllers/workoutsexercises.controller");
 
 router
-  .get("/", readData)
-  .get("/:id", loggedIn, filterByWorkoutExercise, readOne)
+  .get("/", filterByWorkoutExercise, readData)
+  .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, imageUpload.array("files", 5), createData)
   .put("/:id", loggedIn, imageUpload.array("files", 5), updateData)
   .delete("/:id", loggedIn, deleteData);

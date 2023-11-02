@@ -12,7 +12,7 @@ const {
 
 router
   .get("/", filterByWorkout, readData)
-  .get("/:id", loggedIn, filterByWorkout, readOne)
+  .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, createData)
   .put("/:id", loggedIn, updateData)
   .delete("/:id", loggedIn, deleteData);

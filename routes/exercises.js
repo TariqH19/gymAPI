@@ -18,7 +18,7 @@ const {
 
 router
   .get("/", filterExercisesByUser, readData)
-  .get("/:id", loggedIn, filterExercisesByUser, readOne)
+  .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, imageUpload.array("files", 5), createData)
   .put("/:id", loggedIn, imageUpload.array("files", 5), updateData)
   .delete("/:id", loggedIn, deleteData);

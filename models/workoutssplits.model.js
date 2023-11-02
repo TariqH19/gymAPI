@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const workoutSplitSchema = new Schema(
   {
     workout: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       required: [true, "Name of the workout is required"],
       ref: "Workout",
     },

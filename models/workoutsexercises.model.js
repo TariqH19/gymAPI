@@ -27,6 +27,12 @@ const workoutExerciseSchema = new Schema(
         },
       },
     ],
+    time_start: {
+      type: Date,
+    },
+    time_end: {
+      type: Date,
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",

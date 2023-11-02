@@ -15,7 +15,7 @@ const {
 
 router
   .get("/", filterByWorkoutSplit, readData)
-  .get("/:id", loggedIn, filterByWorkoutSplit, readOne)
+  .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, createData)
   .put("/:id", loggedIn, updateData)
   .delete("/:id", loggedIn, deleteData);
