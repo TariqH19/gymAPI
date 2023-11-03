@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node server.js",
     "dev": "nodemon server.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "sonar": "sonar-scanner"
   },
   "author": "Tariq Horan",
   "license": "ISC",
@@ -33,6 +34,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "sonarqube-scanner": "^3.1.0"
   }
 }
