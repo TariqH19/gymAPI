@@ -8,7 +8,7 @@ const workoutExerciseSchema = new Schema(
       ref: "Workout",
     },
     exercise: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       required: true,
       ref: "Exercise",
     },
@@ -25,14 +25,31 @@ const workoutExerciseSchema = new Schema(
         weight: {
           type: Number,
         },
+        exercise: {
+          type: Schema.Types.ObjectId,
+          required: true,
+          ref: "Exercise",
+        },
       },
     ],
-    time_start: {
-      type: Date,
-    },
-    time_end: {
-      type: Date,
-    },
+    workoutDetails: [
+      {
+        time_start: {
+          type: Date,
+        },
+        time_end: {
+          type: Date,
+        },
+        notes: {
+          type: [String],
+        },
+        workout: {
+          type: Schema.Types.ObjectId,
+          required: true,
+          ref: "Workout",
+        },
+      },
+    ],
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
