@@ -1,3 +1,13 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api" }
+  ],
+  "functions": {
+    "myFunction1": {
+      "maxDuration": 30
+    },
+    "myFunction2": {
+      "maxDuration": 45
+    }
+  }
 }
