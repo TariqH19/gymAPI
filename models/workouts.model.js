@@ -10,6 +10,12 @@ const workoutSchema = new Schema(
     notes: {
       type: [String],
     },
+    exercises: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Exercise",
+      },
+    ],
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",

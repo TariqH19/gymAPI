@@ -58,5 +58,3 @@ app.use("/api/userData", require("./routes/userdata"));
 app.listen(port, () => {
   console.log(`listening at port, ${port}`);
 });
-
-export default express;

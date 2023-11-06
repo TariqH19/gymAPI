@@ -3,6 +3,7 @@ const Workout = require("../models/workouts.model");
 const Splits = require("../models/splits.model");
 const WorkoutExercise = require("../models/workoutsexercises.model");
 const SplitExercise = require("../models/workoutssplits.model");
+const User = require("../models/user.model");
 
 const getUserData = (req, res, next) => {
   const userId = req.user._id;

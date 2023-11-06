@@ -8,7 +8,7 @@ const workoutExerciseSchema = new Schema(
       ref: "Workout",
     },
     exercise: {
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       required: true,
       ref: "Exercise",
     },
@@ -25,11 +25,6 @@ const workoutExerciseSchema = new Schema(
         weight: {
           type: Number,
         },
-        exercise: {
-          type: Schema.Types.ObjectId,
-          required: true,
-          ref: "Exercise",
-        },
       },
     ],
     workoutDetails: [
@@ -42,11 +37,6 @@ const workoutExerciseSchema = new Schema(
         },
         notes: {
           type: [String],
-        },
-        workout: {
-          type: Schema.Types.ObjectId,
-          required: true,
-          ref: "Workout",
         },
       },
     ],
