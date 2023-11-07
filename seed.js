@@ -34,7 +34,7 @@ db.once("open", async () => {
       {
         name: "Lat Pulldown",
         muscle_group: ["Back", "Biceps"],
-        image: "",
+        file_path: "",
         notes: ["Keep your back straight", "Don't forget to stretch"],
         user: USER_ID_1,
       },
@@ -42,7 +42,7 @@ db.once("open", async () => {
         name: "Squats",
         muscle_group: ["Quads", "Glutes", "Hamstrings"],
         notes: ["Keep your back straight", "Don't forget to stretch"],
-        image: "",
+        file_path: "",
         user: USER_ID_2,
       },
     ]);
@@ -58,22 +58,25 @@ db.once("open", async () => {
       },
     ]);
 
+    // getting the _id values of the data seeded
+    const exerciseIds = exercises.map((exercise) => exercise._id);
+    const splitIds = splits.map((split) => split._id);
+
     const workouts = await Workout.create([
       {
         name: "Pull A",
         notes: ["This will be a heavy back day...", "Don't forget to stretch"],
+        exercises: [exerciseIds[0], exerciseIds[1]],
         user: USER_ID_1,
       },
       {
         name: "Push A",
         notes: ["This will be a heavy chest day...", "Don't forget to stretch"],
+        exercises: exerciseIds[1],
         user: USER_ID_2,
       },
     ]);
 
-    // getting the _id values of the data seeded
-    const exerciseIds = exercises.map((exercise) => exercise._id);
-    const splitIds = splits.map((split) => split._id);
     const workoutIds = workouts.map((workout) => workout._id);
 
     // data for pivot tables
@@ -91,6 +94,13 @@ db.once("open", async () => {
             setNumber: 2,
             reps: 12,
             weight: 55,
+          },
+        ],
+        workoutDetails: [
+          {
+            time_start: new Date("2011-11-11"),
+            time_end: new Date("2012-12-12"),
+            notes: ["Felt tired", "Need to eat more"],
           },
         ],
         user: USER_ID_1,

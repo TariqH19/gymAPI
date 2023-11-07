@@ -19,7 +19,7 @@ const exerciseSchema = new Schema(
       required: [true, "Name of the user is required"],
     },
     file_path: {
-      type: [String],
+      type: String,
     },
   },
   { timestamps: true }

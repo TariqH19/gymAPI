@@ -8,14 +8,6 @@ const register = (req, res) => {
     inputData.file_path = req.file.originalname;
   }
   inputData.password = bcrypt.hashSync(req.body.password, 10);
-  // let error = newUser.validateSync();
-
-  // if (error) {
-  //   console.log(error);
-  //   return res.status(400).json({
-  //     msg: error,
-  //   });
-  // }
 
   inputData
     .save()

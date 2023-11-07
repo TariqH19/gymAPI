@@ -7,9 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node server.js",
     "dev": "nodemon server.js",
-    "seed": "node seed.js",
-    "sonar": "sonar-scanner",
-    "vercel-build":"echo hello"
+    "seed": "node seed.js"
   },
   "author": "Tariq Horan",
   "license": "ISC",

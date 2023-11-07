@@ -46,7 +46,7 @@ const workoutExerciseSchema = new Schema(
       required: [true, "Name of the User is required"],
     },
     file_path: {
-      type: [String],
+      type: String,
     },
   },
   { timestamps: true }

@@ -18,8 +18,8 @@ const {
 router
   .get("/", filterByWorkoutExercise, readData)
   .get("/:id", loggedIn, readOne)
-  .post("/", loggedIn, imageUpload.array("files", 5), createData)
-  .put("/:id", loggedIn, imageUpload.array("files", 5), updateData)
+  .post("/", loggedIn, imageUpload.single("image"), createData)
+  .put("/:id", loggedIn, imageUpload.single("image"), updateData)
   .delete("/:id", loggedIn, deleteData);
 
 module.exports = router;
