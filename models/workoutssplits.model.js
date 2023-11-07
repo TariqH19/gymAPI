@@ -10,7 +10,7 @@ const workoutSplitSchema = new Schema(
     split: {
       type: Schema.Types.ObjectId,
       required: [true, "Name of the split is required"],
-      ref: "Split",
+      ref: "Splits",
     },
     notes: {
       type: [String],
