@@ -49,7 +49,7 @@ const createData = (req, res) => {
 
   Exercise.create(inputData)
     .then((data) => {
-      console.log(`new Exercise created: ${data}`);
+      console.log(`new Exercise created`);
       res.status(201).json(data);
     })
     .catch((err) => {
@@ -75,7 +75,7 @@ const updateData = (req, res) => {
     new: false,
   })
     .then((data) => {
-      console.log(`Exercise updated: ${data}`);
+      console.log(`Exercise updated`);
       if (data) {
         deletedImage(data.file_path);
         res.status(201).json(data);

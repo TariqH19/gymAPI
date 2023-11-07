@@ -45,7 +45,7 @@ const createData = (req, res) => {
 
   Splits.create(inputData)
     .then((data) => {
-      console.log(`new Splits created: ${data}`);
+      console.log(`new Splits created`);
       res.status(201).json(data);
     })
     .catch((err) => {
@@ -66,7 +66,7 @@ const updateData = (req, res) => {
     new: true,
   })
     .then((data) => {
-      console.log(`Splits updated: ${data}`);
+      console.log(`Splits updated`);
       res.status(201).json(data);
     })
     .catch((err) => {

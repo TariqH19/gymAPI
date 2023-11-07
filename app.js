@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-var passport = require("passport");
+const passport = require("passport");
 const session = require("express-session");
 const passportStrategy = require("./passport/passport.js");
 

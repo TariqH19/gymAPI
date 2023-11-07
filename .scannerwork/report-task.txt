@@ -1,6 +1,6 @@
-projectKey=gym-api
+projectKey=GYMAPI
 serverUrl=http://localhost:9000
 serverVersion=10.2.1.78527
-dashboardUrl=http://localhost:9000/dashboard?id=gym-api
-ceTaskId=AYukuwLV9db2Ybt5ORmL
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYukuwLV9db2Ybt5ORmL
+dashboardUrl=http://localhost:9000/dashboard?id=GYMAPI
+ceTaskId=AYupniQn07JRD1pGEh_b
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYupniQn07JRD1pGEh_b

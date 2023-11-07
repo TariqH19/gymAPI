@@ -22,7 +22,12 @@ const workoutSchema = new Schema(
       required: [true, "Name of the User is required"],
     },
   },
-  { timestamps: true }
+  { timestamps: true },
+  workoutSchema.virtual("exercises", {
+    ref: "Exercise",
+    localField: "_id",
+    foreignField: "workout",
+  })
 );
 
 module.exports = model("Workout", workoutSchema);

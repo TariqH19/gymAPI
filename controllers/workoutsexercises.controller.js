@@ -72,7 +72,7 @@ const updateData = (req, res) => {
     new: false,
   })
     .then((data) => {
-      console.log(`WorkoutExercise updated: ${data}`);
+      console.log(`WorkoutExercise updated`);
       if (data) {
         deletedImage(data.file_path);
         res.status(201).json(data);

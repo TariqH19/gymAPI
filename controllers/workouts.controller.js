@@ -45,7 +45,7 @@ const createData = (req, res) => {
 
   Workout.create(inputData)
     .then((data) => {
-      console.log(`new Workout created: ${data}`);
+      console.log(`new Workout created`);
       res.status(201).json(data);
     })
     .catch((err) => {
@@ -66,7 +66,7 @@ const updateData = (req, res) => {
     new: true,
   })
     .then((data) => {
-      console.log(`Workout updated: ${data}`);
+      console.log(`Workout updated`);
       res.status(201).json(data);
     })
     .catch((err) => {

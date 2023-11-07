@@ -92,7 +92,27 @@ const profile = (req, res) => {
     });
 };
 
-const logout = (req, res) => {};
+const invalidatedTokens = [];
+
+const logout = (req, res) => {
+  // Get the token from the request header or wherever it's stored
+  const token = req.header("Authorization");
+
+  // Check if the token is in the invalidatedTokens list
+  if (invalidatedTokens.includes(token)) {
+    // The token is already invalidated
+    return res.status(401).json({
+      msg: "Token is already invalidated",
+    });
+  }
+
+  // Add the token to the invalidatedTokens list
+  invalidatedTokens.push(token);
+  console.log("invalid tokens", invalidatedTokens);
+  res.status(200).json({
+    msg: "Logout successful",
+  });
+};
 
 module.exports = {
   register,
