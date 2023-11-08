@@ -5,7 +5,6 @@ const workoutSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name of the workout is required"],
-      unique: true,
     },
     notes: {
       type: [String],

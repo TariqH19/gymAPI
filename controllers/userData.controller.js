@@ -3,7 +3,7 @@ const models = {
   Workout: require("../models/workouts.model"),
   Splits: require("../models/splits.model"),
   WorkoutExercise: require("../models/workoutsexercises.model"),
-  SplitExercise: require("../models/workoutssplits.model"),
+  SplitWorkout: require("../models/workoutssplits.model"),
 };
 
 const getUserData = async (req, res, next) => {

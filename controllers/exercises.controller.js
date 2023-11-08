@@ -67,8 +67,6 @@ const updateData = (req, res) => {
   let inputData = req.body;
   if (req.file) {
     inputData.file_path = req.file.filename;
-  } else {
-    return res.status(422).json({ msg: req.imageError });
   }
 
   Exercise.findByIdAndUpdate(id, inputData, {
@@ -77,7 +75,7 @@ const updateData = (req, res) => {
     .then((data) => {
       console.log(`Exercise updated`);
       if (data) {
-        deletedImage(data.file_path);
+        //deletedImage(data.file_path);
         res.status(201).json(data);
       } else {
         deletedImage(inputData.file_path);
@@ -121,9 +119,6 @@ const deleteData = (req, res) => {
     .catch((err) => {
       if (err.name === "CastError") {
         res.status(404).json({ msg: `Exercise ${id} not found` });
-      } else {
-        console.log(err);
-        res.status(500).json(err);
       }
     });
 };

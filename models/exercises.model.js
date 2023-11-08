@@ -5,7 +5,6 @@ const exerciseSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name of the exercise is required"],
-      unique: true,
     },
     muscle_group: {
       type: [String],
