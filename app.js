@@ -3,8 +3,16 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const passportStrategy = require("./passport/passport.js");
+const MongoStore = require("connect-mongo")(session);
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: "cats",
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore(options),
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
