@@ -1,12 +1,13 @@
 require("dotenv").config();
-const app = require("express");
+const express = require("express");
 const jwt = require("jsonwebtoken");
+const app = require("./app.js");
 const port = 3000;
 const morgan = require("morgan");
 
 require("./configs/db.js")();
 
-app.use(app.json());
+app.use(express.json());
 
 app.use(morgan("dev"));
 
@@ -38,7 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(app.static(__dirname + "/public/"));
+app.use(express.static(__dirname + "/public/"));
 
 app.get("/", (req, res) => {
   res.send("Hello");
@@ -56,4 +57,4 @@ app.listen(port, () => {
   console.log(`listening at port, ${port}`);
 });
 
-export default app;
+export default express;
