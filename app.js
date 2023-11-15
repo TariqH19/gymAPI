@@ -1,16 +1,20 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const passportStrategy = require("./passport/passport.js");
-const MongoStore = require("connect-mongo")(session);
+
+const MongoStore = require("connect-mongo");
 
 app.use(
   session({
     secret: "cats",
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: process.env.DB_ATLAS_URL }),
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_ATLAS_URL,
+    }),
   })
 );
 app.use(passport.initialize());
