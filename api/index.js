@@ -1,3 +1,7 @@
-import app from "../server";
+const app = require("express")();
 
-export default app;
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+module.exports = app;
