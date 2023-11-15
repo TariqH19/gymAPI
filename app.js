@@ -10,7 +10,7 @@ app.use(
     secret: "cats",
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore(options),
+    store: new MongoStore({ mongooseConnection: process.env.DB_ATLAS_URL }),
   })
 );
 app.use(passport.initialize());
