@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Exercise = require("./models/exercises.model");
 const Splits = require("./models/splits.model");
 const Workout = require("./models/workouts.model");
+const User = require("./models/user.model");
 const WorkoutExercise = require("./models/workoutsexercises.model");
 const WorkoutSplit = require("./models/workoutssplits.model");
 const USER_ID_1 = "65393fb693a3420884546179";
@@ -27,8 +28,24 @@ db.once("open", async () => {
     await Workout.deleteMany({});
     await WorkoutExercise.deleteMany({});
     await WorkoutSplit.deleteMany({});
+    await User.deleteMany({});
 
     // data to be seeded
+
+    const users = await User.create([
+      {
+        _id: USER_ID_1,
+        name: "tariq",
+        email: "t@t.t",
+        password: "secret",
+      },
+      {
+        _id: USER_ID_2,
+        name: "jamal",
+        email: "j@j.j",
+        password: "secret",
+      },
+    ]);
 
     const exercises = await Exercise.create([
       {
