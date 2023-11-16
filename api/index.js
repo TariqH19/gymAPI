@@ -45,13 +45,13 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.use("/api/users", require("./routes/users"));
-app.use("/api/workoutssplits", require("./routes/workoutssplits"));
-app.use("/api/workoutsexercises", require("./routes/workoutsexercises"));
-app.use("/api/exercises", require("./routes/exercises"));
-app.use("/api/workouts", require("./routes/workouts"));
-app.use("/api/splits", require("./routes/splits"));
-app.use("/api/userData", require("./routes/userdata"));
+app.use("/api/users", require("../routes/users"));
+app.use("/api/workoutssplits", require("../routes/workoutssplits"));
+app.use("/api/workoutsexercises", require("../routes/workoutsexercises"));
+app.use("/api/exercises", require("../routes/exercises"));
+app.use("/api/workouts", require("../routes/workouts"));
+app.use("/api/splits", require("../routes/splits"));
+app.use("/api/userData", require("../routes/userdata"));
 
 app.listen(port, () => {
   console.log(`listening at port, ${port}`);
