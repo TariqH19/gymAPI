@@ -1,9 +1,9 @@
 const app = require("express")();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 
-app.use("/api/users", require("../routes/users"));
+app.use("/", require("../routes/users"));
 
 module.exports = app;
