@@ -17,6 +17,9 @@ app.use((req, res, next) => {
   if (req.headers.authorization) {
     token = req.headers.authorization.split(" ");
   }
+  if (!token && req.query._vercel_jwt) {
+    token = ["Bearer", req.query._vercel_jwt];
+  }
   console.log(token);
   if (token && token[0] === "Bearer") {
     // Verify token is valid
