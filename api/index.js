@@ -4,6 +4,6 @@ const app = require("express")();
 //   res.send("Hello World!");
 // });
 
-app.use("/", require("../routes/users"));
+app.get("/register", require("../routes/users"));
 
 module.exports = app;
