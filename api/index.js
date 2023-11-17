@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.use("/api/users", require("../routes/users"));
+app.get("/api/users", require("../routes/users"));
 app.use("/api/workoutssplits", require("../routes/workoutssplits"));
 app.use("/api/workoutsexercises", require("../routes/workoutsexercises"));
 app.use("/api/exercises", require("../routes/exercises"));
