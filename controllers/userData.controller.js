@@ -1,3 +1,26 @@
+const axios = require("axios");
+
+let muscle = "chest";
+
+const getExerciseData = (req, res, next) => {
+  axios({
+    method: "GET",
+    url: `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`,
+    headers: { "X-Api-Key": "fayyl1tGv2Cyf1BzMmsofQ==0wmQf7NOjmbrzTsV" },
+    contentType: "application/json",
+  })
+    .then((response) => {
+      console.log(response.data);
+      res.status(200).json(response.data);
+    })
+    .catch((error) => {
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
+    });
+};
+
 const models = {
   Exercise: require("../models/exercises.model"),
   Workout: require("../models/workouts.model"),
@@ -27,4 +50,5 @@ const getUserData = async (req, res, next) => {
 
 module.exports = {
   getUserData,
+  getExerciseData,
 };
