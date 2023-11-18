@@ -1,3 +1,4 @@
+require("dotenv").config();
 const axios = require("axios");
 
 let muscle = "chest";
@@ -6,7 +7,7 @@ const getExerciseData = (req, res, next) => {
   axios({
     method: "GET",
     url: `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`,
-    headers: { "X-Api-Key": "fayyl1tGv2Cyf1BzMmsofQ==0wmQf7NOjmbrzTsV" },
+    headers: { "X-Api-Key": process.env.EX_API_KEY },
     contentType: "application/json",
   })
     .then((response) => {
