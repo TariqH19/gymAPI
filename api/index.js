@@ -4,8 +4,24 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const port = 3000;
 const morgan = require("morgan");
+const session = require("express-session");
+const passport = require("passport");
+const MongoStore = require("connect-mongo");
 
 require("../configs/db.js")();
+
+app.use(
+  session({
+    secret: "cats",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_ATLAS_URL,
+    }),
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.json());
 
@@ -59,6 +75,31 @@ app.use("/api/exercises", require("../routes/exercises"));
 app.use("/api/workouts", require("../routes/workouts"));
 app.use("/api/splits", require("../routes/splits"));
 app.use("/api/userData", require("../routes/userdata"));
+
+app.get("/auth", (req, res) => {
+  res.send('<a href="/auth/google">Authenticate with Google</a>');
+});
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/auth/success",
+    failureRedirect: "/auth/google/failure",
+  })
+);
+
+app.get("/auth/success", (req, res) => {
+  res.send(`Hello ${req.user.displayName}`);
+});
+
+app.get("/auth/google/failure", (req, res) => {
+  res.send("Failed to authenticate..");
+});
 
 app.listen(port, () => {
   console.log(`listening at port, ${port}`);
