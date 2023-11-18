@@ -75,10 +75,10 @@ const updateData = (req, res) => {
     .then((data) => {
       console.log(`Exercise updated`);
       if (data) {
-        //deletedImage(data.file_path);
+        deletedImage(data.file_path);
         res.status(201).json(data);
       } else {
-        deletedImage(inputData.file_path);
+        //deletedImage(inputData.file_path);
         res.status(404).json({ msg: `Exercise ${id} not found` });
       }
     })

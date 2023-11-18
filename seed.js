@@ -8,6 +8,8 @@ const WorkoutExercise = require("./models/workoutsexercises.model");
 const WorkoutSplit = require("./models/workoutssplits.model");
 const USER_ID_1 = "65393fb693a3420884546179";
 const USER_ID_2 = "653d87331b352e4de5574957";
+const bcrypt = require("bcryptjs");
+const password = bcrypt.hashSync("secret", 10);
 
 // connecting to the database
 mongoose.connect(process.env.Db_ATLAS_URL, {
@@ -29,7 +31,7 @@ db.once("open", async () => {
     await WorkoutExercise.deleteMany({});
     await WorkoutSplit.deleteMany({});
     await User.deleteMany({});
-
+    console.log("Existing data deleted successfully.");
     // data to be seeded
 
     const users = await User.create([
@@ -37,13 +39,13 @@ db.once("open", async () => {
         _id: USER_ID_1,
         name: "tariq",
         email: "t@t.t",
-        password: "secret",
+        password: password,
       },
       {
         _id: USER_ID_2,
         name: "jamal",
         email: "j@j.j",
-        password: "secret",
+        password: password,
       },
     ]);
 
