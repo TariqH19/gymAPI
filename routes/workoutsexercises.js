@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router();
 const imageUpload = require("../configs/images");
 
-const {
-  filterByWorkoutExercise,
-} = require("../controllers/workoutsexercises.controller");
-
 const { loggedIn } = require("../commonFunctions/commonFunctions");
 const {
   readData,
@@ -13,6 +9,7 @@ const {
   createData,
   updateData,
   deleteData,
+  filterByWorkoutExercise,
 } = require("../controllers/workoutsexercises.controller");
 
 router

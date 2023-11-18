@@ -105,7 +105,7 @@ const deleteData = (req, res) => {
         file_path = data.file_path;
         return data.deleteOne();
       } else {
-        res.status(404).json({ msg: `Exercise ${id} not found` });
+        res.status(404).json({ msg: `File ${id} not found` });
       }
     })
     .then((data) => {
