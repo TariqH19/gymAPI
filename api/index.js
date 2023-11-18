@@ -12,6 +12,10 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use((req, res, next) => {
+  if (req.path === "/favicon.ico") {
+    // Skip token verification for favicon requests
+    return next();
+  }
   console.log(req.headers);
   let token = null;
   if (req.headers.authorization) {
