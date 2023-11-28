@@ -10,11 +10,11 @@ const {
   createData,
   updateData,
   deleteData,
-  filterExercisesByUser,
+  filterByExercise,
 } = require("../controllers/exercises.controller");
 
 router
-  .get("/", filterExercisesByUser, readData)
+  .get("/", filterByExercise, readData)
   .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, imageUpload.single("image"), createData)
   .put("/:id", loggedIn, imageUpload.single("image"), updateData)

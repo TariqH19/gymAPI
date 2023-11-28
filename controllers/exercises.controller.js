@@ -125,8 +125,8 @@ const deleteData = (req, res) => {
     });
 };
 
-const filterExercisesByUser = (req, res, next) => {
-  const userId = req.params._id;
+const filterByExercise = (req, res, next) => {
+  const userId = req.user._id;
   Exercise.find({ user: userId })
     .then((exercises) => {
       res.json(exercises);
@@ -142,5 +142,5 @@ module.exports = {
   createData,
   updateData,
   deleteData,
-  filterExercisesByUser,
+  filterByExercise,
 };
