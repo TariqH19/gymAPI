@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
+const cors = require("cors");
 
 require("../configs/db.js")();
 
@@ -22,6 +23,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(cors());
 
 app.use(express.json());
 
