@@ -7,12 +7,6 @@ const workoutExerciseSchema = new Schema(
       required: [true, "Name of the Session is required"],
     },
 
-    exercise: {
-      type: [Schema.Types.ObjectId],
-      required: true,
-      ref: "Exercise",
-    },
-
     workout: {
       type: Schema.Types.ObjectId,
       required: true,
