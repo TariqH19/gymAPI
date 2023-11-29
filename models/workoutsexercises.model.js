@@ -3,12 +3,12 @@ const { Schema, model } = require("mongoose");
 const workoutExerciseSchema = new Schema(
   {
     workout: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       required: true,
       ref: "Workout",
     },
     exercise: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       required: true,
       ref: "Exercise",
     },
