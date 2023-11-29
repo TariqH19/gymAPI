@@ -39,11 +39,11 @@ const workoutExerciseSchema = new Schema(
         time_end: {
           type: Date,
         },
-        notes: {
-          type: [String],
-        },
       },
     ],
+    notes: {
+      type: [String],
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
