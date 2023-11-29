@@ -2,18 +2,17 @@ const { Schema, model } = require("mongoose");
 
 const workoutExerciseSchema = new Schema(
   {
-    workout: {
-      type: [Schema.Types.ObjectId],
-      required: true,
-      ref: "Workout",
-    },
-    exercise: {
-      type: [Schema.Types.ObjectId],
-      required: true,
-      ref: "Exercise",
+    name: {
+      type: String,
+      required: [true, "Name of the Session is required"],
     },
     setDetails: [
       {
+        exercise: {
+          type: [Schema.Types.ObjectId],
+          required: true,
+          ref: "Exercise",
+        },
         setNumber: {
           type: Number,
           required: true,
@@ -29,6 +28,11 @@ const workoutExerciseSchema = new Schema(
     ],
     workoutDetails: [
       {
+        workout: {
+          type: [Schema.Types.ObjectId],
+          required: true,
+          ref: "Workout",
+        },
         time_start: {
           type: Date,
         },
