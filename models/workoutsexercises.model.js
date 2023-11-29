@@ -6,41 +6,19 @@ const workoutExerciseSchema = new Schema(
       type: String,
       required: [true, "Name of the Session is required"],
     },
-    setDetails: [
-      {
-        exercise: {
-          type: [Schema.Types.ObjectId],
-          required: true,
-          ref: "Exercise",
-        },
-        setNumber: {
-          type: Number,
-          required: true,
-        },
-        reps: {
-          type: Number,
-          required: true,
-        },
-        weight: {
-          type: Number,
-        },
-      },
-    ],
-    workoutDetails: [
-      {
-        workout: {
-          type: Schema.Types.ObjectId,
-          required: true,
-          ref: "Workout",
-        },
-        time_start: {
-          type: Date,
-        },
-        time_end: {
-          type: Date,
-        },
-      },
-    ],
+
+    exercise: {
+      type: [Schema.Types.ObjectId],
+      required: true,
+      ref: "Exercise",
+    },
+
+    workout: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Workout",
+    },
+
     notes: {
       type: [String],
     },
