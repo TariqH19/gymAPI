@@ -88,12 +88,17 @@ app.get(
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
-app.get(
+router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/auth/success",
     failureRedirect: "/auth/google/failure",
-  })
+  }),
+  (req, res) => {
+    const user = req.user;
+    const token = jwt.sign({ user }, process.env.JWT_SECRET);
+
+    res.json({ token });
+  }
 );
 
 app.get("/auth/success", (req, res) => {
