@@ -88,7 +88,7 @@ app.get(
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
-router.get(
+app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/auth/google/failure",
