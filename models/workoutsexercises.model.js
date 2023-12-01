@@ -5,6 +5,7 @@ const workoutExerciseSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name of the Session is required"],
+      unique: false,
     },
 
     workout: {
@@ -14,7 +15,7 @@ const workoutExerciseSchema = new Schema(
     },
 
     notes: {
-      type: [String],
+      type: String,
     },
     user: {
       type: Schema.Types.ObjectId,

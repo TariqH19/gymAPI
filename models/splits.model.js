@@ -5,7 +5,7 @@ const splitsSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name of the split is required"],
-      unique: true,
+      unique: false,
     },
     workout: {
       type: [Schema.Types.ObjectId],
@@ -13,7 +13,7 @@ const splitsSchema = new Schema(
       ref: "Workout",
     },
     notes: {
-      type: [String],
+      type: String,
     },
     dateStart: {
       type: Date,

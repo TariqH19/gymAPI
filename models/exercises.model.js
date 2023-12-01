@@ -5,12 +5,13 @@ const exerciseSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name of the exercise is required"],
+      unique: false,
     },
     muscle_group: {
-      type: [String],
+      type: String,
     },
     notes: {
-      type: [String],
+      type: String,
     },
     user: {
       type: Schema.Types.ObjectId,
