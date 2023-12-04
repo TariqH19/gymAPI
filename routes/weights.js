@@ -1,20 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const { loggedIn } = require("../commonFunctions/commonFunctions");
-const {
-  filterByWorkoutSplit,
-} = require("../controllers/workoutssplits.controller");
+const { filterByWeights } = require("../controllers/weights.controller");
 
 const {
   readData,
-  readOne,
   createData,
   updateData,
   deleteData,
-} = require("../controllers/workoutssplits.controller");
+} = require("../controllers/weights.controller");
 
 router
-  .get("/", filterByWorkoutSplit, readData)
+  .get("/", filterByWeights, readData)
   .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, createData)
   .put("/:id", loggedIn, updateData)
