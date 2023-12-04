@@ -72,7 +72,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", require("../routes/users"));
-app.use("/api/workoutssplits", require("../routes/workoutssplits"));
+app.use("/api/weights", require("../routes/weights"));
 app.use("/api/workoutsexercises", require("../routes/workoutsexercises"));
 app.use("/api/exercises", require("../routes/exercises"));
 app.use("/api/workouts", require("../routes/workouts"));
