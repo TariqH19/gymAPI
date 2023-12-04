@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const workoutSplitSchema = new Schema(
+const WeightsSchema = new Schema(
   {
     weight: {
       type: Number,
@@ -16,4 +16,4 @@ const workoutSplitSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model("WorkoutSplit", workoutSplitSchema);
+module.exports = model("Weight", WeightsSchema);

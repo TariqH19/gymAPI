@@ -12,7 +12,6 @@ const {
 
 router
   .get("/", filterByWeights, readData)
-  .get("/:id", loggedIn, readOne)
   .post("/", loggedIn, createData)
   .put("/:id", loggedIn, updateData)
   .delete("/:id", loggedIn, deleteData);

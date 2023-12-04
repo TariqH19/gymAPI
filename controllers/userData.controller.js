@@ -27,7 +27,7 @@ const models = {
   Workout: require("../models/workouts.model"),
   Splits: require("../models/splits.model"),
   WorkoutExercise: require("../models/workoutsexercises.model"),
-  SplitWorkout: require("../models/workoutssplits.model"),
+  Weight: require("../models/weights.model"),
 };
 
 const getUserData = async (req, res, next) => {

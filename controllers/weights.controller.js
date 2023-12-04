@@ -94,7 +94,6 @@ const filterByWeights = (req, res, next) => {
 
 module.exports = {
   readData,
-  readOne,
   createData,
   updateData,
   deleteData,
