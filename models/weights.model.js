@@ -7,6 +7,12 @@ const WeightsSchema = new Schema(
       required: [true, "Weight is required"],
       unique: false,
     },
+    date: {
+      type: Date,
+      required: [true, "Date is required"],
+      unique: false,
+      default: Date.now,
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
