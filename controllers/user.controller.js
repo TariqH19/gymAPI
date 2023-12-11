@@ -38,7 +38,7 @@ const login = (req, res) => {
       }
       if (user) {
         let img = `${process.env.STATIC_FILES_URL}${user.image_path}`;
-        data.image_path = img;
+        user.image_path = img;
         res.status(200).json(data);
       }
       let token = jwt.sign(
