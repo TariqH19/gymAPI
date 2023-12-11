@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 const register = (req, res) => {
   let inputData = new User(req.body);
   if (req.file) {
-    inputData.file_path = req.file.originalname;
+    inputData.image_path =
+      process.env.STORAGE_ENGINE === "S3" ? req.file.key : req.file.filename;
   }
   inputData.password = bcrypt.hashSync(req.body.password, 10);
 
@@ -34,7 +35,11 @@ const login = (req, res) => {
           msg: "user not found",
         });
       }
-
+      if (user) {
+        let img = `${process.env.STATIC_FILES_URL}${user.image_path}`;
+        data.image_path = img;
+        res.status(200).json(data);
+      }
       let token = jwt.sign(
         {
           email: user.email,
