@@ -14,9 +14,19 @@ const register = (req, res) => {
   inputData
     .save()
     .then((user) => {
+      let token = jwt.sign(
+        {
+          email: user.email,
+          name: user.name,
+          _id: user._id,
+          file_path: user.file_path,
+        },
+        process.env.JWT_SECRET
+      );
       user.password = undefined;
       return res.status(201).json({
         data: user,
+        token,
       });
     })
     .catch((err) => {
