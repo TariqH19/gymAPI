@@ -46,11 +46,11 @@ const login = (req, res) => {
           msg: "user not found",
         });
       }
-      if (user) {
-        let img = `${process.env.STATIC_FILES_URL}${user.image_path}`;
-        user.image_path = img;
-        res.status(200).json(data);
-      }
+      // if (user) {
+      //   let img = `${process.env.STATIC_FILES_URL}${user.image_path}`;
+      //   user.image_path = img;
+      //   res.status(200).json(data);
+      // }
       let token = jwt.sign(
         {
           email: user.email,
