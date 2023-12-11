@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { loginRequired } = require("../controllers/user.controller");
 const { isLoggedInGoogle } = require("../passport/passport.js");
 const fs = require("fs");
