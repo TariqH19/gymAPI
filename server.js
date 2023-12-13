@@ -7,7 +7,6 @@ const cors = require("cors");
 const morgan = require("morgan");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const pathToSwaggerUI = require("swagger-ui-dist").absolutePath();
 
 require("./configs/db.js")();
 

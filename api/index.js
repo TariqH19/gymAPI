@@ -38,11 +38,11 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "YouTube API",
+      title: "Gym API",
       version: "1.0.0",
     },
   },
-  apis: ["./Controllers/*.controller.js"],
+  apis: ["./controllers/*.controller.js"],
 };
 
 // serve swagger doc
