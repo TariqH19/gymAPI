@@ -42,9 +42,12 @@ const fileFilter = (req, file, cb) => {
   if (!file) {
     req.imageError = "Image not uploaded";
     return cb(null, false);
-  } else if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-    req.imageError = "Image must be jpg|jpeg|png|gif";
-    return cb(null, false);
+  } else if (
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/png"
+  ) {
+    return cb(null, true);
   } else {
     return cb(null, true);
   }

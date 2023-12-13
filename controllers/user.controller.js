@@ -87,6 +87,8 @@ const register = (req, res) => {
   }
   inputData.password = bcrypt.hashSync(req.body.password, 10);
 
+  console.log("fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", req.file.key);
+
   inputData
     .save()
     .then((user) => {
