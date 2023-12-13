@@ -19,12 +19,13 @@ if (process.env.STORAGE_ENGINE === "S3") {
     s3: s3,
     bucket: process.env.MY_AWS_BUCKET,
     contentType: multerS3.AUTO_CONTENT_TYPE,
-    // acl: 'public-read',
     metadata: function (req, file, cb) {
       cb(null, { fieldName: file.fieldname });
     },
     key: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname));
+      // Include the original filename with the extension in the key
+      const key = `${Date.now()}${path.extname(file.originalname)}`;
+      cb(null, key);
     },
   });
 } else {
@@ -39,17 +40,18 @@ if (process.env.STORAGE_ENGINE === "S3") {
 }
 
 const fileFilter = (req, file, cb) => {
-  if (!file) {
-    req.imageError = "Image not uploaded";
-    return cb(null, false);
-  } else if (
+  if (
     file.mimetype === "image/jpeg" ||
     file.mimetype === "image/jpg" ||
     file.mimetype === "image/png"
   ) {
-    return cb(null, true);
+    // Accept only image files
+    cb(null, true);
   } else {
-    return cb(null, true);
+    // Reject non-image files
+    req.imageError =
+      "Invalid file type. Only JPEG, JPG, and PNG images are allowed.";
+    cb(null, false);
   }
 };
 
