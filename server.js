@@ -5,12 +5,39 @@ const app = require("./app.js");
 const port = 3000;
 const cors = require("cors");
 const morgan = require("morgan");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const pathToSwaggerUI = require("swagger-ui-dist").absolutePath();
 
 require("./configs/db.js")();
 
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
+
+const options = {
+  failOnErrors: true, // Whether or not to throw when parsing errors. Defaults to false.
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Gym API",
+      version: "1.0.0",
+    },
+  },
+  apis: ["./controllers/*.controller.js"],
+};
+
+// serve swagger doc
+const swaggerSpec = swaggerJsDoc(options);
+app.use("/", swaggerUi.serve);
+app.get(
+  "/",
+  swaggerUi.setup(swaggerSpec, {
+    customCssUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css",
+    customSiteTitle: "AJ CA1",
+  })
+);
 
 app.use((req, res, next) => {
   console.log(req.headers);
@@ -41,10 +68,6 @@ app.use((req, res, next) => {
 });
 
 app.use(express.static(__dirname + "/public/"));
-
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
 
 app.use("/api/users", require("./routes/users"));
 app.use("/api/weights", require("./routes/weights"));

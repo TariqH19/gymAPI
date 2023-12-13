@@ -8,6 +8,9 @@ const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const pathToSwaggerUI = require("swagger-ui-dist").absolutePath();
 
 require("../configs/db.js")();
 
@@ -29,6 +32,30 @@ app.use(cors());
 app.use(express.json());
 
 app.use(morgan("dev"));
+
+const options = {
+  failOnErrors: true, // Whether or not to throw when parsing errors. Defaults to false.
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "YouTube API",
+      version: "1.0.0",
+    },
+  },
+  apis: ["./Controllers/*.controller.js"],
+};
+
+// serve swagger doc
+const swaggerSpec = swaggerJsDoc(options);
+app.use("/", swaggerUi.serve);
+app.get(
+  "/",
+  swaggerUi.setup(swaggerSpec, {
+    customCssUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css",
+    customSiteTitle: "AJ CA1",
+  })
+);
 
 app.use((req, res, next) => {
   if (req.path === "/favicon.ico") {

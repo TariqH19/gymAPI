@@ -13,24 +13,6 @@ const loggedIn = (req, res, next) => {
   }
 };
 
-const deleteImage = (file_path) => {
-  let path = `./public/uploads/${file_path}`;
-  fs.access(path, fs.constants.F_OK, (err) => {
-    if (err) {
-      console.log(`File ${path} does not exist`);
-      return;
-    }
-
-    fs.unlink(path, (err) => {
-      if (err) {
-        console.log(`Error deleting file ${path}`);
-        return;
-      }
-      console.log(`File ${path} deleted`);
-    });
-  });
-};
-
 const deletedImage = async (filename) => {
   if (process.env.STORAGE_ENGINE === "S3") {
     const { S3Client, DeleteObjectCommand } = require("@aws-sdk/client-s3");

@@ -3,10 +3,86 @@ const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+/**
+ * @openapi
+ * /api/users/register:
+ *   post:
+ *     tags:
+ *      - users
+ *     summary: Register user
+ *     description: Register user.
+ *     requestBody:
+ *      content:
+ *          multipart/form-data:
+ *              schema:
+ *                  type: object
+ *                  properties:
+ *                      email:
+ *                          type: string
+ *                          required: true
+ *                          description: The email used for registration.
+ *                          example: sam.scott@gmail.com
+ *                      name:
+ *                          type: string
+ *                          required: true
+ *                          description: The username used for registration.
+ *                          example: sscott123
+ *                      password:
+ *                          type: string
+ *                          required: true
+ *                          description: The password used for login.
+ *                          example: secret0123
+ *                      image:
+ *                          type: string
+ *                          format: binary
+ *                          description: The user's image path.
+ *                          example: Diana01.png
+ *     responses:
+ *       201:
+ *         description: Returns the created user data and token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *              type: object
+ *              properties:
+ *                  data:
+ *                      type: object
+ *                      properties:
+ *                          _id:
+ *                              type: string
+ *                              description: The user objectID.
+ *                              example: 653d699d13d7c3d86a91c9ed
+ *                          name:
+ *                              type: string
+ *                              description: The user's username.
+ *                              example: Diana01
+ *                          email:
+ *                              type: string
+ *                              description: The user's email address.
+ *                              example: Diana01@gmail.com
+ *                          image:
+ *                              type: string
+ *                              description: The user's image path.
+ *                              example: Diana01.png
+ *                  token:
+ *                      type: string
+ *                      description: The authentication token.
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *              schema:
+ *                  properties:
+ *                      msg:
+ *                          type: string
+ *                          description: Error message.
+ *                          example: Validation failed
+ */
+
 const register = (req, res) => {
   let inputData = new User(req.body);
   if (req.file) {
-    inputData.image_path =
+    inputData.file_path =
       process.env.STORAGE_ENGINE === "S3" ? req.file.key : req.file.filename;
   }
   inputData.password = bcrypt.hashSync(req.body.password, 10);
@@ -36,6 +112,66 @@ const register = (req, res) => {
       });
     });
 };
+
+/**
+ * @openapi
+ * /api/users/login:
+ *   post:
+ *     tags:
+ *       - users
+ *     summary: User login
+ *     description: Login an existing user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 required: true
+ *                 description: The user's email address.
+ *                 example: sam.scott@gmail.com
+ *               password:
+ *                 type: string
+ *                 required: true
+ *                 description: The user's password.
+ *                 example: secret0123
+ *     responses:
+ *       '200':
+ *         description: Returns the authentication token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: The authentication token.
+ *       '404':
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: User not found
+ *       '400':
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: Validation failed
+ */
 
 const login = (req, res) => {
   User.findOne({ email: req.body.email })
@@ -84,6 +220,73 @@ const loginRequired = (req, res, next) => {
     });
   }
 };
+
+/**
+ * @openapi
+ * /api/users/profile/{id}:
+ *   get:
+ *     tags:
+ *       - users
+ *     summary: Get user profile
+ *     description: Get the profile of a specific user.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user's objectID.
+ *         example: 653d699d13d7c3d86a91c9ed
+ *     responses:
+ *       '200':
+ *         description: Returns the user's profile data.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       description: The user's objectID.
+ *                       example: 653d699d13d7c3d86a91c9ed
+ *                     name:
+ *                       type: string
+ *                       description: The user's username.
+ *                       example: Diana01
+ *                     email:
+ *                       type: string
+ *                       description: The user's email address.
+ *                       example: Diana01@gmail.com
+ *                     image:
+ *                       type: string
+ *                       description: The user's image path.
+ *                       example: Diana01.png
+ *       '404':
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: User not found
+ *       '400':
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   description: Error message.
+ *                   example: Invalid request
+ */
 
 const profile = (req, res) => {
   User.findById(req.params.id)
