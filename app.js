@@ -4,6 +4,7 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const passportStrategy = require("./passport/passport.js");
+const jwt = require("jsonwebtoken");
 
 const MongoStore = require("connect-mongo");
 
@@ -32,9 +33,16 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/auth/success",
     failureRedirect: "/auth/google/failure",
-  })
+  }),
+  (req, res) => {
+    // Authentication succeeded; create a JWT token
+    const user = req.user;
+    const token = jwt.sign({ user }, process.env.JWT_SECRET);
+
+    // Redirect the user to the frontend with the token as a query parameter
+    res.redirect(`http://localhost:8081/?token=${token}`);
+  }
 );
 
 app.get("/auth/success", (req, res) => {

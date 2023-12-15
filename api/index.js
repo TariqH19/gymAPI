@@ -121,10 +121,12 @@ app.get(
     failureRedirect: "/auth/google/failure",
   }),
   (req, res) => {
+    // Authentication succeeded; create a JWT token
     const user = req.user;
     const token = jwt.sign({ user }, process.env.JWT_SECRET);
 
-    res.json({ token });
+    // Redirect the user to the frontend with the token as a query parameter
+    res.redirect(`http://localhost:3000/?token=${token}`);
   }
 );
 
