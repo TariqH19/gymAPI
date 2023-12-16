@@ -94,10 +94,6 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + "/public/"));
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
-
 app.use("/api/users", require("../routes/users"));
 app.use("/api/weights", require("../routes/weights"));
 app.use("/api/workoutsexercises", require("../routes/workoutsexercises"));
