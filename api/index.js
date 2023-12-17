@@ -10,6 +10,7 @@ const MongoStore = require("connect-mongo");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
+const pathToSwaggerUI = require("swagger-ui-dist").absolutePath();
 
 require("../configs/db.js")();
 
