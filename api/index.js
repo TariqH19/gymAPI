@@ -10,7 +10,6 @@ const MongoStore = require("connect-mongo");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const pathToSwaggerUI = require("swagger-ui-dist").absolutePath();
 
 require("../configs/db.js")();
 
@@ -42,7 +41,7 @@ const options = {
       version: "1.0.0",
     },
   },
-  apis: ["./controllers/*.controller.js"],
+  apis: ["../controllers/*.controller.js"],
 };
 
 // serve swagger doc
@@ -92,7 +91,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("./public", express.static(__dirname + "/public/"));
+app.use(express.static(__dirname + "/public/"));
 
 app.use("/api/users", require("../routes/users"));
 app.use("/api/weights", require("../routes/weights"));
