@@ -41,7 +41,7 @@ const options = {
       version: "1.0.0",
     },
   },
-  apis: ["../controllers/*.controller.js"],
+  apis: ["./controllers/*.controller.js"],
 };
 
 // serve swagger doc
