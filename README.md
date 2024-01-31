@@ -1,4 +1,4 @@
-# Project Title
+# GYM API
 
 An express API where users can create read update and delete their fitness information
 
