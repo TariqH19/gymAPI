@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const app = require("./app.js");
+const app = express();
 const port = 3000;
 const cors = require("cors");
 const morgan = require("morgan");
