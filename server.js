@@ -4,7 +4,8 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const morgan = require("morgan");
-
+const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env;
+const base = "https://api-m.sandbox.paypal.com";
 require("./configs/db.js")();
 
 app.use(express.json());
