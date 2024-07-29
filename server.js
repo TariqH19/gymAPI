@@ -1,13 +1,19 @@
 require("dotenv").config();
+require("./configs/db.js")();
+const path = require("path");
+const fileURLToPath = require("url").fileURLToPath;
 const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
 const morgan = require("morgan");
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env;
 const base = "https://api-m.sandbox.paypal.com";
-require("./configs/db.js")();
 
+app.use(express.static(path.join(__dirname, "../client")));
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
@@ -123,6 +129,10 @@ app.post("/api/create-product-plan", async (req, res) => {
 
 app.use("/api/cart", require("./routes/cart.js"));
 app.use("/api/custom", require("./routes/custom.js"));
+
+app.get("/subs", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/checkout.html"));
+});
 
 app.listen(port, () => {
   console.log(`listening at port, ${port}`);
